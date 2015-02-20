@@ -1,0 +1,5 @@
+CREATE TRIGGER `buy_trigger` BEFORE INSERT ON `buy_details`
+ FOR EACH ROW BEGIN
+  INSERT INTO buy_seq VALUES (NULL);
+  SET NEW.buy_id = CONCAT('BU', LPAD(LAST_INSERT_ID(), 3, '0'));
+END

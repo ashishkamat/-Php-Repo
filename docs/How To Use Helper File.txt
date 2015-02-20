@@ -1,0 +1,34 @@
+
+to use it in your php file
+
+use include ("Helper.php");
+
+creating object 
+$helper=new Helper("name of database");
+
+Using functions
+
+1) Insert
+	$helper->insert("Name of table","coulumn names","values");
+	Eg: $helper->insert("Product","product_name,image_path,descrition","'$product_name','$image_path','$description'");
+2) Update
+	$helper->update("Name of table","Change","Condition");
+	Eg: $helper->update("Product","product_name='$product_name',descrition='$description'","product_id='$product_id'");
+3) Delete
+	$helper->delete("Name of table","Condition");
+	$helper->delete("product","product_id='$product_id'");
+4) Select 
+i)with condition
+		$result=$helper->read_record("product_name,description,image_path","product","product_id='$product_id'");
+ii) without condition
+		$result=$helper->read_all("product_name,description,image_path","product","product_id='$product_id'");
+		$result=$helper->read_record("*","product","product_id='$product_id'"); // For all records
+		
+			For fetching and displaying
+				if(is_array($result))
+				{
+					foreach($result as $row)
+					{
+					 echo "Product Name".$row['product_name']."<br/>";
+					 }
+				}
